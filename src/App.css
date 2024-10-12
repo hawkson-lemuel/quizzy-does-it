@@ -1,8 +1,8 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .content-wrapper{
@@ -11,7 +11,28 @@
   align-items:center; 
   max-width:900px; 
   position:relative; 
-  transition:200ms
+  width:90vw;
+  box-sizing: border-box;
+  transition:200ms;
+  padding-bottom:70px;
+}
+
+.content-wrapper .page-title{
+    color:#FE88A6; 
+    font-size:40px;
+}
+
+.icon-wrapper{
+  width: 100%;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-wrapper .icon{
+  width:50px
 }
 
 .card {
@@ -45,6 +66,10 @@
 .main-header button{
   padding:10px 0px;
 
+}
+
+.main-header a:focus, .main-header button:focus{
+  outline:none;
 }
 
 /* For Chrome, Safari, and Edge */
@@ -102,6 +127,16 @@ input[type="number"] {
 }
 
 @media (max-width: 768px) {
+
+  .content-wrapper .page-title{
+    margin-top:0px;
+    font-size:30px;
+  }
+
+  .icon-wrapper {
+    padding-top: 50px;
+  }
+
   .main-header{
     padding:15px 20px;
   }
