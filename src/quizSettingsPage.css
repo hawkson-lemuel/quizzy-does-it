@@ -1,0 +1,32 @@
+.quiz-settings-grid,.difficulty-selector-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    align-items: center;
+}
+
+.quiz-settings-label{
+     text-align: right;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.quiz-settings-error{
+    color: #DC5C5C;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+@media (max-width: 768px){
+     .quiz-settings-grid{
+        gap:10px;
+     }
+     .quiz-settings-label{
+        font-size:14px;
+     }
+
+     .difficulty-selector-wrapper{
+        grid-template-columns: 1fr 2fr;
+     }
+}

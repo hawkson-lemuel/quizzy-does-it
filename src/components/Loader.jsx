@@ -6,7 +6,7 @@ export default function Loader ({message}) {
         <div className="icon-wrapper">
             <img className="icon" src={loaderImg} />
             {
-                message ? <p style={{color:'#FE88A6', fontSize:'20px'}}>{message}</p>:null
+                message ? <p style={{color:'#FE88A6', fontSize:'20px', textAlign:'center'}}>{message}</p>:null
             }
         </div>
     )

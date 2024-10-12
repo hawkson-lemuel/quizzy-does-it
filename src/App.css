@@ -145,4 +145,9 @@ input[type="number"] {
     font-size:20px;
   }
 
+  .fancy-container{
+    padding:6px 10px;
+    font-size:15px; 
+  }
+
 }

@@ -1,0 +1,44 @@
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width:60px;
+  }
+  
+  .custom-checkbox {
+    display: none; /* Hide the default checkbox */
+  }
+  
+  .custom-checkbox + .fancy-container {
+    height:30px;
+    width:10px;
+    cursor:pointer;
+    position: relative;
+  }
+  
+  .custom-checkbox:checked + label.fancy-container {
+    border-color:#fe88a6;
+    background-color: #F5D5DD;
+  }
+  
+  .custom-checkbox:checked + label.fancy-container::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 40px; 
+    height: 40px; 
+    background-image: url('./assets/check.png'); /* Specify the path to your image */
+    background-size: contain; /* This ensures the image covers the entire area */
+    background-position: center; /* Center the image */
+    opacity: 1; 
+}
+
+@media (max-width: 768px) {
+    .custom-checkbox:checked + label.fancy-container::after {
+        height: 30px;
+        width: 30px;
+        left:4%;
+    }
+}
+  
