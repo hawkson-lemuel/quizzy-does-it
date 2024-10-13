@@ -11,6 +11,11 @@
     font-size: 20px;
 }
 
+.quiz-settings-category-name{
+    font-size: 22px;
+    /* margin:0px */
+}
+
 .quiz-settings-error{
     color: #DC5C5C;
     font-weight: bold;
@@ -25,6 +30,10 @@
      .quiz-settings-label{
         font-size:14px;
      }
+
+     .quiz-settings-category-name{
+      font-size: 18px;
+  }
 
      .difficulty-selector-wrapper{
         grid-template-columns: 1fr 2fr;

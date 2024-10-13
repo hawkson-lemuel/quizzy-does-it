@@ -131,6 +131,9 @@ export default function QuizSettingsPage() {
                         isLoading ? (<Loader message="Loading..." />) : isFailed ? (<Warning message="Failed to fetch question counts. Please refresh to try again"/>) : (
                             <>
                                 <div className="quiz-settings-grid">
+                                    <label className="quiz-settings-label">Category</label>
+                                    <p className="quiz-settings-category-name">{category.name}</p>
+
                                     <label className="quiz-settings-label">Number of Questions</label>
                                     <input 
                                         type="number" 
@@ -148,9 +151,8 @@ export default function QuizSettingsPage() {
                                     <label className="quiz-settings-label">Timed Quiz</label>
                                     <TimedQuizCheckbox checked={isTimedQuiz} onChange={handleTimedQuizChange} />
                                     
-                                    <label></label>
-                                    <button className="regular-button" style={{marginTop:'10px'}} disabled={errors.length > 0} onClick={handleStartQuiz}>Start Quiz!</button>
                                 </div>
+                                    <button className="regular-button" style={{marginTop:'50px'}} disabled={errors.length > 0} onClick={handleStartQuiz}>Start Quiz!</button>
                                 {errors.length > 0 && (
                                     <div className="quiz-settings-error">
                                         {errors.map((error, index) => (
