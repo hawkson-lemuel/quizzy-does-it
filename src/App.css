@@ -15,6 +15,7 @@
   box-sizing: border-box;
   transition:200ms;
   padding-bottom:70px;
+  background-color:#fbfbfb;
 }
 
 .content-wrapper .page-title{
@@ -149,7 +150,7 @@ input[type="number"] {
   }
 
   .fancy-container{
-    padding:6px 10px;
+    padding:12px 10px;
     font-size:15px; 
   }
 
