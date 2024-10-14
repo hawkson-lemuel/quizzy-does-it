@@ -93,6 +93,7 @@ input[type="number"] {
   font-weight: bold;
   color:#7F7F7F;
   font-size:20px; 
+  transition: padding 200ms;
 }
 
 .fancy-container:focus, .fancy-container.selected, .fancy-container:hover{
