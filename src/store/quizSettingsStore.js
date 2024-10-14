@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { TIME_IN_SECONDS } from '../utils/constants';
 
-const questions = [{"type":"multiple","difficulty":"easy","category":"General Knowledge","question":"What was the name of the WWF professional wrestling tag team made up of the wrestlers Ax and Smash?","correct_answer":"Demolition","incorrect_answers":["The Dream Team","The Bushwhackers","The British Bulldogs"]},{"type":"multiple","difficulty":"easy","category":"General Knowledge","question":"In DC comics where does the Green Arrow (Oliver Queen) live?","correct_answer":"Star City","incorrect_answers":["Central City","Gotham City","Metropolis"]},{"type":"boolean","difficulty":"easy","category":"General Knowledge","question":"Jingle Bells was originally meant for Thanksgiving","correct_answer":"True","incorrect_answers":["False"]},{"type":"multiple","difficulty":"easy","category":"General Knowledge","question":"What is the largest organ of the human body?","correct_answer":"Skin","incorrect_answers":["Heart","large Intestine","Liver"]},{"type":"boolean","difficulty":"easy","category":"General Knowledge","question":"Ping-Pong originated in England","correct_answer":"True","incorrect_answers":["False"]}]
 
 export const useQuizSettingsStore = create(
   persist(
@@ -10,7 +9,7 @@ export const useQuizSettingsStore = create(
       numberOfQuestions: 1,
       difficulty: 'easy',
       isTimedQuiz: false,
-      activeQuestions: questions,
+      activeQuestions: [],
       answers:[],
       currentQuestionIndex: 0,
       category: null,

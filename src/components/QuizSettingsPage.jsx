@@ -19,6 +19,16 @@ const fetchCategoryQuestionCount = async (categoryId) => {
     }
 }
 
+const fetchQuestions = async (category, difficulty, numberOfQuestions) => {
+    try{
+        const response = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}`);
+        const data = await response.json();
+        return data.results;
+    }catch(error){
+        return false;
+    }
+}
+
 const initiateQuestionCount = {
     total_easy_question_count: 0,
     total_medium_question_count: 0,
@@ -33,7 +43,7 @@ export default function QuizSettingsPage() {
     const [isFailed, setIsFailed] = useState(false);
     const navigate = useNavigate();
 
-    const {numberOfQuestions, resetQuiz, difficulty, category, isTimedQuiz, setNumberOfQuestions,  setDifficulty,  setIsTimedQuiz} = useQuizSettingsStore();
+    const {numberOfQuestions, resetQuiz, setActiveQuestions, difficulty, category, isTimedQuiz, setNumberOfQuestions,  setDifficulty,  setIsTimedQuiz} = useQuizSettingsStore();
 
     useEffect(() => {
         setIsFailed(false);
@@ -101,6 +111,7 @@ export default function QuizSettingsPage() {
         return newErrors.length === 0;
     }
 
+
     useEffect(() => {
         console.log(numberOfQuestions, difficulty, isTimedQuiz);
         validateInputs();
@@ -108,10 +119,24 @@ export default function QuizSettingsPage() {
 
     const handleStartQuiz = () => {
         if (validateInputs()) {
-            //navigate to question page
-            console.log('Start Quiz');
-            resetQuiz()
-            navigate(QUESTION)
+            fetchQuestions(category.id, difficulty, numberOfQuestions).then((data) => {
+                console.log("response from api", data);
+                if(!data){
+                    throw new Error('Failed to fetch questions');
+                }
+
+                setActiveQuestions(data);
+                //navigate to question page
+                console.log('Start Quiz');
+                resetQuiz()
+                navigate(QUESTION)
+
+                console.log(data);
+            }).catch(() => {
+                setErrors(["Failed to fetch questions. Refresh page to try again."]);
+            })
+
+
         }
     }
 
@@ -135,7 +160,7 @@ export default function QuizSettingsPage() {
                                         max={categoryQuestionCount} 
                                         value={numberOfQuestions} 
                                         onChange={handleNumberOfQuestionsChange} 
-                                        style={{width:'40px', height:'30px', textAlign:'center', padding:'8px 15px', fontSize:'20px'}} 
+                                        style={{width:'40px', textAlign:'center'}} 
                                     />
                                     
                                     <label className="quiz-settings-label">Difficulty</label>
