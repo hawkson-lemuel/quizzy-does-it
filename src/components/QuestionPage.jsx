@@ -9,23 +9,13 @@ import Loader from "./Loader";
 import correctImg from '../assets/correct_answer.png';
 import clockImg from '../assets/clock-outline.png';
 
-const fetchQuestions = async (category, difficulty, numberOfQuestions) => {
-    try{
-        const response = await fetch(`https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}`);
-        const data = await response.json();
-        return data.results;
-    }catch(error){
-        return false;
-    }
-}
-
 export default function QuestionPage() {
     const [shuffledAnswers, setShuffledAnswers] = useState([]);
     const [isFailed, setIsFailed] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [timeRemaining, setTimeRemaining] = useState(TIME_IN_SECONDS);
 
-    const { activeQuestions: questions, timeStarted, setTimeStarted, getCorrectAnswerCount, setActiveQuestions, currentQuestionIndex, setCurrentQuestionIndex, category, difficulty, numberOfQuestions, answers, setAnswers, isTimedQuiz } = useQuizSettingsStore();
+    const { activeQuestions: questions, timeStarted, setTimeStarted, updateQuizHistory, getCorrectAnswerCount, setActiveQuestions, currentQuestionIndex, setCurrentQuestionIndex, category, difficulty, numberOfQuestions, answers, setAnswers, isTimedQuiz } = useQuizSettingsStore();
 
     const navigate = useNavigate();
     const calculateProgressbarPercentage = () => {
@@ -94,9 +84,13 @@ export default function QuestionPage() {
         if (currentQuestionIndex + 1 < questions.length) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            // Quiz is completed
-            // setActiveQuestions([]);
-            // TODO handle navigation to results page
+            //update quiz history
+            updateQuizHistory({
+                category: category.name,
+                score: getCorrectAnswerCount(),
+                totalQuestions: numberOfQuestions,
+                  date: new Date().toLocaleDateString('en-CA') // Format: YYYY-MM-DD
+            })
             navigate(QUIZ_RESULTS);
         }
     }

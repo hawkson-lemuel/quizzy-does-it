@@ -15,6 +15,7 @@ export const useQuizSettingsStore = create(
       currentQuestionIndex: 0,
       category: null,
       timeStarted: TIME_IN_SECONDS,
+      quizHistory: [],
       setTimeStarted: (timeStarted) => set({ timeStarted }),
       setAnswers: (questionIndex, answer) => {
         const currentAnswers = get().answers;
@@ -45,6 +46,14 @@ export const useQuizSettingsStore = create(
       setNumberOfQuestions: (numberOfQuestions) => set({ numberOfQuestions }),
       setDifficulty: (difficulty) => set({ difficulty }),
       setIsTimedQuiz: (isTimedQuiz) => set({ isTimedQuiz }),
+      updateQuizHistory: (history) => set((state) => {
+        // Keep only the last 30 quiz history items
+          const currentHistory = state.quizHistory;
+          if (currentHistory.length >= 30) {
+              currentHistory.shift(); // Remove the oldest item
+          }
+          return { quizHistory: [...currentHistory, history] };
+      }),
     }),
     {
       name: 'quiz-settings-storage', // Key name in storage (local storage by default)
