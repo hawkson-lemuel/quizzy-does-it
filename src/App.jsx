@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css'
 import QuizCategoriesPage from './components/QuizCategoriesPage'
 import {QUESTION, QUIZ_CATEGORIES, QUIZ_HISTORY, QUIZ_RESULTS, QUIZ_SETTINGS, QUIZ_REVIEW} from './utils/routes'
@@ -21,6 +21,7 @@ function App() {
           <Route path={QUESTION} element={<QuestionPage />} />
           <Route path={QUIZ_RESULTS} element={<QuizResultsPage />} />
           <Route path={QUIZ_REVIEW} element={<QuizReviewPage />} />
+          <Route path="*" element={<Navigate to={QUIZ_CATEGORIES} />} />
         </Routes>
       </Router>
     </>
