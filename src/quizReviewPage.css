@@ -1,0 +1,31 @@
+.question{
+    font-weight:bold; 
+    font-size:22px
+}
+
+.quiz-review-system-answer{
+    margin:0px;
+    font-size:18px;
+}
+.quiz-review-user-answer{
+    font-weight:bold;
+    font-size:18px;
+    margin:0px;
+}
+
+.quiz-review-user-answer.correct{
+    color:#57CD75;
+}
+.quiz-review-user-answer.incorrect{
+    color:#DC5C5C;
+}
+
+@media (max-width: 768px) {
+    .question{
+        font-size:16px
+    }
+
+    .quiz-review-system-answer, .quiz-review-user-answer{
+        font-size:15px;
+    }
+}

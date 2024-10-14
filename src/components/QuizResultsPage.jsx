@@ -5,7 +5,7 @@ import "../quizCategoriesPage.css";
 import { useEffect, useState } from 'react';
 import { useQuizSettingsStore } from '../store/quizSettingsStore';
 import Header from './Header';
-import { QUESTION, QUIZ_CATEGORIES } from '../utils/routes';
+import { QUIZ_REVIEW, QUESTION, QUIZ_CATEGORIES } from '../utils/routes';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function QuizResultsPage() {
@@ -46,7 +46,9 @@ export default function QuizResultsPage() {
 
                     </span>
                     <div>
-                        <button className="regular-button" style={{width:'155px', marginRight:'10px'}}>Check Answers</button>
+                        <Link to={QUIZ_REVIEW}>
+                            <button className="regular-button" style={{width:'155px', marginRight:'10px'}}>Check Answers</button>
+                        </Link>
                         <button className="regular-button" style={{backgroundColor:'#57CD75', marginRight:'10px'}} onClick={handleRetakeQuiz}>Retake Quiz!</button>
                     </div>
                     <Link to={QUIZ_CATEGORIES} style={{textDecoration:'none', color:'#FE88A6', fontSize:'16px', marginTop:'20px'}}>Choose Another Topic</Link>
