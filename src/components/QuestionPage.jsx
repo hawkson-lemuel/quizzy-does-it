@@ -1,18 +1,15 @@
 import "../questionPage.css";
 import { useEffect, useState } from 'react';
-import { QUIZ_RESULTS } from "../utils/routes";
+import { QUIZ_CATEGORIES, QUIZ_RESULTS, QUIZ_SETTINGS } from "../utils/routes";
 import { useQuizSettingsStore } from "../store/quizSettingsStore";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import Header from "./Header";
 import { TIME_IN_SECONDS } from "../utils/constants";
-import Loader from "./Loader";
 import correctImg from '../assets/correct_answer.png';
 import clockImg from '../assets/clock-outline.png';
 
 export default function QuestionPage() {
-    const [shuffledAnswers, setShuffledAnswers] = useState([]);
-    const [isFailed, setIsFailed] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [shuffledAnswers, setShuffledAnswers] = useState([]); //store the shuffled answers
     const [timeRemaining, setTimeRemaining] = useState(TIME_IN_SECONDS);
 
     const { activeQuestions: questions, timeStarted, setTimeStarted, updateQuizHistory, getCorrectAnswerCount, setActiveQuestions, currentQuestionIndex, setCurrentQuestionIndex, category, difficulty, numberOfQuestions, answers, setAnswers, isTimedQuiz } = useQuizSettingsStore();
@@ -53,32 +50,14 @@ export default function QuestionPage() {
     }, [isTimedQuiz, currentQuestionIndex, timeRemaining]);
 
     useEffect(() => {
-        setIsFailed(false);
-
-        // if (questions.length === 0) { // if there are no active questions, fetch them
-        //     fetchQuestions(category.id, difficulty, numberOfQuestions).then((data) => {
-        //         if(!data)
-        //             throw new Error('Failed to fetch questions');
-
-        //         setActiveQuestions(data);
-        //     })
-        //     .catch(() => setIsFailed(true))
-        //     .finally(() => setIsLoading(false));
-
-        // }
-    }, [category.id, difficulty, numberOfQuestions, questions.length, setActiveQuestions]);
-
-    useEffect(() => {
         if (questions.length > 0) {
             const currentQuestionData = questions[currentQuestionIndex];
+            //merge the correct answer and the other answer options and shuffle them
             const answers = [...currentQuestionData.incorrect_answers, currentQuestionData.correct_answer];
             setShuffledAnswers(answers.sort(() => Math.random() - 0.5));
         }
     }, [currentQuestionIndex, questions]);
 
-    useEffect(() => {
-        console.log('answers', currentQuestionIndex, answers);
-    }, [answers]);
 
     const navigateToNext = () => {
         if (currentQuestionIndex + 1 < questions.length) {
@@ -108,6 +87,7 @@ export default function QuestionPage() {
         }
     }
 
+    //this function returns the class to be applied to the answer option based on if it is correct or incorrect
     const getClassForAnswer = (answer) => {
         let classes = [];
 
@@ -128,19 +108,33 @@ export default function QuestionPage() {
         }
     }
 
+    //this function updates the number of seconds remaining to answer a question
     const updateTimeRemaining = () => {
+        // Calculate the time elapsed since the quiz started.
+        //takes the current millisecond time and divides it by 1000 to get the number of seconds
+        //then it subtracts the time the quiz started to get the time elapsed(in seconds)
         const timeElapsed = Math.floor(Date.now() / 1000) - timeStarted;
+    
+        // Calculate the remaining time by subtracting the elapsed time from the total allowed time
         const remainingTime = Math.floor(TIME_IN_SECONDS - timeElapsed);
-
-        if(remainingTime <= 1){
+    
+        // If the remaining time is less than or equal to 1 second, set the remaining time to 1 second
+        //this is done because the time remaining should not display less than 1 second. time becomes less than 1 second if it takes more than a second to redirect to the next question
+        if (remainingTime <= 1) {
             setTimeRemaining(1);
-        }else{
+        } else {
+            // Otherwise, set the remaining time to the calculated remaining time
             setTimeRemaining(remainingTime);
         }
     }
 
     if (questions.length === 0) {
-        return <Loader message="Loading questions..." />;
+        return <div style={{display:'flex',flexDirection:'column', alignItems:'center', fontSize:'20px'}}>
+            <p>No questions found</p>
+            <Link to={QUIZ_CATEGORIES}>
+                <p style={{color:'#FE88A6'}}>Go Home</p>
+            </Link>
+        </div>;
     }
 
     return (
