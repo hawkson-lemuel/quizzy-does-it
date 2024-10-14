@@ -8,7 +8,7 @@ export default function Header ({button}) {
             {
                 button && (
                     <Link to={button.route}>
-                        <button style={{background:'none', border:'none', color:'#FE88A6', fontWeight:'bold'}}>{button.text}</button>
+                        <button className="main-header-button">{button.text}</button>
                     </Link>
                 )
             }
