@@ -8,6 +8,7 @@ import { useQuizSettingsStore } from '../store/quizSettingsStore';
 import Header from './Header';
 import Loader from './Loader';
 import Warning from './Warning';
+import React from 'react';
 
 const fetchCategories = async () => {
     try{

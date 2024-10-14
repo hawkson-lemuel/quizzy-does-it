@@ -169,7 +169,7 @@ export default function QuestionPage() {
                                 )
                             }
                             {
-                                true && (
+                                isTimedQuiz && (
                                     <span className="quiz-status-wrapper" style={{color:'#FE88A6'}}>
                                         <img src={clockImg} className="quiz-status-icon" /> {timeRemaining}
                                     </span>

@@ -133,7 +133,7 @@ input[type="number"] {
 
   .content-wrapper .page-title{
     margin-top:0px;
-    font-size:30px;
+    font-size:26px;
   }
 
   .icon-wrapper {
@@ -141,11 +141,11 @@ input[type="number"] {
   }
 
   .main-header{
-    padding:15px 20px;
+    padding:12px 20px;
   }
 
   .main-header .title{
-    font-size:20px;
+    font-size:18px;
   }
 
   .fancy-container{

@@ -135,7 +135,7 @@ export default function QuizSettingsPage() {
                                         max={categoryQuestionCount} 
                                         value={numberOfQuestions} 
                                         onChange={handleNumberOfQuestionsChange} 
-                                        style={{width:'40px', textAlign:'center', padding:'8px 15px'}} 
+                                        style={{width:'40px', height:'30px', textAlign:'center', padding:'8px 15px', fontSize:'20px'}} 
                                     />
                                     
                                     <label className="quiz-settings-label">Difficulty</label>

@@ -11,7 +11,7 @@
   
   .custom-checkbox + .fancy-container {
     height:30px;
-    width:10px;
+    width:40px;
     cursor:pointer;
     position: relative;
   }
@@ -36,8 +36,8 @@
 
 @media (max-width: 768px) {
     .custom-checkbox:checked + label.fancy-container::after {
-        height: 30px;
-        width: 30px;
+        /* height: 30px; */
+        width: 50px;
         left:4%;
     }
 }
