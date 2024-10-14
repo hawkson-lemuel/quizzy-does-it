@@ -6,7 +6,7 @@ import { TIME_IN_SECONDS } from '../utils/constants';
 export const useQuizSettingsStore = create(
   persist(
     (set, get) => ({
-      numberOfQuestions: 1,
+      numberOfQuestions: 10,
       difficulty: 'easy',
       isTimedQuiz: false,
       activeQuestions: [],
