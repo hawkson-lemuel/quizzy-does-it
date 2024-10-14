@@ -31,6 +31,13 @@ export const useQuizSettingsStore = create(
           return acc;
         }, 0);
       },
+      resetQuiz:() =>{
+        set({
+          answers: [],
+          currentQuestionIndex: 0,
+          timeStarted: Math.floor(Date.now() / 1000),
+        })
+      },
       resetAnswers: () => set({ answers: [] }),
       setCategory: (category) => set({ category }),
       setCurrentQuestionIndex: (currentQuestionIndex) => set({ currentQuestionIndex }),

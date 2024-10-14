@@ -33,7 +33,7 @@ export default function QuizSettingsPage() {
     const [isFailed, setIsFailed] = useState(false);
     const navigate = useNavigate();
 
-    const {numberOfQuestions, resetAnswers, difficulty, setTimeStarted, setCurrentQuestionIndex, category, isTimedQuiz, setNumberOfQuestions,  setDifficulty,  setIsTimedQuiz} = useQuizSettingsStore();
+    const {numberOfQuestions, resetQuiz, difficulty, category, isTimedQuiz, setNumberOfQuestions,  setDifficulty,  setIsTimedQuiz} = useQuizSettingsStore();
 
     useEffect(() => {
         setIsFailed(false);
@@ -106,20 +106,11 @@ export default function QuizSettingsPage() {
         validateInputs();
     }, [numberOfQuestions, difficulty, isTimedQuiz, maxQuestions]);
 
-    const resetQuizStateInStore = () => {
-        //TODO reset questions to 0
-        // setActiveQuestions([]);
-        resetAnswers();
-        setCurrentQuestionIndex(0);
-        //TODO move this into the question fetch page function
-        setTimeStarted(Math.floor(Date.now() / 1000));
-    }
-
     const handleStartQuiz = () => {
         if (validateInputs()) {
             //navigate to question page
             console.log('Start Quiz');
-            resetQuizStateInStore()
+            resetQuiz()
             navigate(QUESTION)
         }
     }
