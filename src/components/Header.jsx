@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { QUIZ_CATEGORIES } from '../utils/routes';
 
 export default function Header ({button}) {
     return (
         <header className="main-header">
-            <p className="title">Quizzy Does It!</p>
+            <Link to={QUIZ_CATEGORIES}>
+                <p className="title">Quizzy Does It!</p>
+            </Link>
             {
                 button && (
                     <Link to={button.route}>
