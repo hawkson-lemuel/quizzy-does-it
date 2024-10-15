@@ -6,73 +6,18 @@ import { useQuizSettingsStore } from '../store/quizSettingsStore';
 
 export default function QuizHistoryPage() {
     const { quizHistory } = useQuizSettingsStore();
-    const history = [
-        {
-            category: 'History',
-            score: 5,
-            num_of_questions: 10,
-            date: '2021-09-01'
-        },
-        {
-            category: 'Current Affairs',
-            score: 15,
-            num_of_questions: 25,
-            date: '2021-09-01'
-        },
-        {
-            category: 'Entertainment',
-            score: 20,
-            num_of_questions: 30,
-            date: '2021-09-01'
-        },
-        {
-            category: 'History',
-            score: 5,
-            num_of_questions: 10,
-            date: '2021-09-01'
-        },
-        {
-            category: 'Current Affairs',
-            score: 15,
-            num_of_questions: 25,
-            date: '2021-09-01'
-        },
-        {
-            category: 'Entertainment',
-            score: 20,
-            num_of_questions: 30,
-            date: '2021-09-01'
-        },
-        {
-            category: 'History',
-            score: 5,
-            num_of_questions: 10,
-            date: '2021-09-01'
-        },
-        {
-            category: 'Current Affairs',
-            score: 15,
-            num_of_questions: 25,
-            date: '2021-09-01'
-        },
-        {
-            category: 'Entertainment',
-            score: 20,
-            num_of_questions: 30,
-            date: '2021-09-01'
-        },
-    ]
 
 return (
     <>
         <Header button={{text:'Back Home',route:QUIZ_CATEGORIES }}/>
         <div className="content-wrapper">
-        <h2 className="page-title">History</h2>
+        <h2 className="page-title">Past Quizzes</h2>
         {
             quizHistory.length === 0 ? <div className="no-history">No quiz history available</div> : (
                 <div className="quiz-grid">
                     {
-                        quizHistory.map((historyItem, index) => (
+                        //using slice to make a shallow copy of the array and reverse to show the most recent quiz first
+                        quizHistory.slice().reverse().map((historyItem, index) => (
                             <div 
                                 key={historyItem.category + index} 
                                 className="quiz-card-wrapper" >
