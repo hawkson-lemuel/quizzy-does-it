@@ -130,6 +130,7 @@ input[type="number"] {
 .regular-button:disabled{
   cursor: not-allowed;
   width:150px;
+  filter:grayscale(1)
 }
 
 @media (max-width: 768px) {
