@@ -78,7 +78,7 @@ export default function QuizCategoriesPage() {
 
     return (
         <>
-            <Header button={{ text: "Past Questions", route: QUIZ_HISTORY }} />
+            <Header button={{ text: "Past Quizzes", route: QUIZ_HISTORY }} />
             <div className="content-wrapper">
                 <h2 className="page-title">Quizzy Does It!</h2>
                 {
